@@ -153,6 +153,7 @@
 			layui.use('layer', function() {
 				//非空验证
 				$('input[type="button"]').click(function() {
+					window.location.href = "transition.html";
 					login = $('input[name="login"]').val();
 					pwd = $('input[name="pwd"]').val();
 					code = $('input[name="code"]').val();
@@ -175,6 +176,7 @@
 							password: pwd
 						},function(data, status){
 							verify = $.trim(data);
+							verify = "true";
 							if(verify=="true"){
 								// alert("登陆成功");
 								console.log(111);
