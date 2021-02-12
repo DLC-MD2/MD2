@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>table模块快速使用</title>
+  <link rel="stylesheet" href="css/layui.css" media="all">
+</head>
+<body>
+ 
+<table id="demo" lay-filter="test"></table>
+ 
+<script src="layui.js"></script>
+<script>
+layui.use('table', function(){
+  var table = layui.table;
+  
+  //第一个实例
+  table.render({
+    elem: '#demo'
+    ,url: 'php/result.txt' //数据接口
+    ,page: true //开启分页
+    ,cols: [[ //表头
+   		   {field: 'title', title: '新闻标题', width:300, sort: true, fixed: 'left'}
+   		   ,{field: 'date', title: '新闻事件', width:200, sort:true}
+   		   ,{field: 'tag', title: '新闻标签', sort: true, width:400}
+		    ,{field: 'url', title: '新闻链接'}
+		    ,{field: 'content', title: '新闻内容', hide:true}
+   		 ]]
+  });
+  
+});
+</script>
+</body>
+</html>

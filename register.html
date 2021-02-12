@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Register Form</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-4.2.1.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+  </head>
+  <body>
+    <div class="page login-page">
+      <div class="container d-flex align-items-center">
+        <div class="form-holder has-shadow">
+          <div class="row">
+            <!-- Logo & Information Panel-->
+            <div class="col-lg-6">
+              <div class="info d-flex align-items-center">
+                <div class="content">
+                  <div class="logo">
+                    <h1>Artwork Track and Trace system</h1>
+                  </div>
+                  <p>Whatever is worth doing is worth doing well</p>
+                </div>
+              </div>
+            </div>
+            <!-- Form Panel    -->
+            <div class="col-lg-6 bg-white">
+              <div class="form d-flex align-items-center">
+                <div class="content">
+                    <div class="form-group">
+                      <input id="register-username" class="input-material" type="text" name="registerUsername" placeholder="Username" >
+								      <div class="invalid-feedback">
+								        	The username must contain 2-10 characters
+								      </div>
+                    </div>
+                    <div class="form-group">
+                      <input id="register-password" class="input-material" type="password" name="registerPassword" placeholder="Password"   >
+                    	<div class="invalid-feedback">
+								        	The password must contain 6-10 characters
+								      </div>
+                    </div>
+                    <div class="form-group">
+                      <input id="register-passwords" class="input-material" type="password" name="registerPasswords" placeholder="Confirm password"   >
+                    	<div class="invalid-feedback">
+								        	Two passwords do not match 
+								      </div>
+                    </div>
+                    <div class="form-group">
+                      <button id="regbtn" type="button" name="registerSubmit" class="btn btn-primary">Sign up</button>
+                    </div>
+                  <small>I already have an account</small><a href="index.html" class="signup">&nbsp;Log in</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- JavaScript files-->
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="https://www.jq22.com/jquery/bootstrap-4.2.1.js"></script>
+    <script>
+    	
+    	$(document).keypress(function(e) {
+				// 回车键事件  
+				if(e.which == 13) {
+					$('button').click();
+				}
+			});
+			
+    	$(function(){
+    		/*错误class  form-control is-invalid
+    		正确class  form-control is-valid*/
+    		var flagName=false;
+    		var flagPas=false;
+    		var flagPass=false;
+    		/*验证用户名*/
+    		var name,passWord,passWords;
+    		$("#register-username").change(function(){
+    			name=$("#register-username").val();
+    			if(name.length<2||name.length>10){
+    				$("#register-username").removeClass("form-control is-valid")
+    				$("#register-username").addClass("form-control is-invalid");
+    				flagName=false;
+    			}else{
+    				$("#register-username").removeClass("form-control is-invalid")
+    				$("#register-username").addClass("form-control is-valid");
+    				flagName=true;
+    			}
+    		})
+    		/*验证密码*/
+    		$("#register-password").change(function(){
+    			passWord=$("#register-password").val();
+    			if(passWord.length<6||passWord.length>18){
+    				$("#register-password").removeClass("form-control is-valid")
+    				$("#register-password").addClass("form-control is-invalid");
+    				flagPas=false;
+    			}else{
+    				$("#register-password").removeClass("form-control is-invalid")
+    				$("#register-password").addClass("form-control is-valid");
+    				flagPas=true;
+    			}
+    		})
+    		/*验证确认密码*/
+    		$("#register-passwords").change(function(){
+    			passWords=$("#register-passwords").val();
+    			if((passWord!=passWords)||(passWords.length<6||passWords.length>18)){
+    				$("#register-passwords").removeClass("form-control is-valid")
+    				$("#register-passwords").addClass("form-control is-invalid");
+    				flagPass=false;
+    			}else{
+    				$("#register-passwords").removeClass("form-control is-invalid")
+    				$("#register-passwords").addClass("form-control is-valid");
+    				flagPass=true;
+    			}
+    		})
+    		
+    		
+    		$("#regbtn").click(function(){
+    			if(flagName&&flagPas&&flagPass){
+    				$.post("php/register.php", {login:name, password:passWord}, function(data){
+					alert("注册成功，请您重新登陆");
+
+    					location="index.html";
+    				})
+    				
+    			}else{
+    				if(!flagName){
+    					$("#register-username").addClass("form-control is-invalid");
+    				}
+    				if(!flagPas){
+    					$("#register-password").addClass("form-control is-invalid");
+    				}
+    				if(!flagPass){
+    					$("#register-passwords").addClass("form-control is-invalid");
+    				}
+    			}
+    		})
+    	})
+    </script>
+  </body>
+</html>

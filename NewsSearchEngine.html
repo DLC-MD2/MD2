@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>新闻检索</title>
+  <link rel="stylesheet" href="css/layui.css" media="all">
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  <!--<script>
+	$(document).ready(function(){
+ 	 $("button").click(function(){
+ 	 	keyword=$("#keyword").val();
+		$.post("NewsSearchEngine.php", {
+			name:"菜鸟教程",
+			url:"http://www.runoob.com"
+		},
+   		function(data,status){
+        		alert("搜索成功!");
+        		alert(keyword);
+        		alert("数据: " + data + "\n状态: " + status);
+        		layui.use('table', function(){
+  			var table = layui.table;
+  
+			  table.render({
+   				 elem: '#demo',
+  			  title: 'Data_exp',
+			//  height: 400,
+			//  width: 800,
+			limit:100,
+// 		 url: 'NewsSearchEngine.php', //数据接口
+		url: 'newfile.txt', //结果数据接口
+   		 page: true, //开启分页
+   		 cols: [[ //表头
+   		   {field: 'title', title: '新闻标题', width:300, sort: true, fixed: 'left'}
+   		   ,{field: 'date', title: '新闻事件', width:200, sort:true}
+   		   ,{field: 'tag', title: '新闻标签', sort: true, width:400}
+		    ,{field: 'url', title: '新闻链接'}
+		    ,{field: 'content', title: '新闻内容', hide:true}
+   		 ]]		
+ 		 });
+  
+		});
+   		 });
+	});
+	});
+</script>-->
+<script>
+$(document).ready(function(){
+	$("button").click(function(){
+		keyword = $("#keyword").val();
+		$.post("php/NewsSearchEngine.php",{
+			opration: "将 - " + keyword + " - 导入php，查询新闻数据库，返回查询结果",
+			keyword:keyword
+		},
+		function(data,status){
+        		alert("搜索成功!");
+        		alert(data);
+        		layui.use('table', function(){
+  			var table = layui.table;
+  
+			  table.render({
+   				 elem: '#demo',
+  			  title: 'Data_exp',
+			//  height: 400,
+			//  width: 800,
+			limit:30,
+// 		 url: 'php/NewsSearchEngine.php', //数据接口
+		url: 'php/result.txt', //结果数据接口
+   		 page: true, //开启分页
+   		 cols: [[ //表头
+   		   {field: 'title', title: '新闻标题', sort: true}
+   		   ,{field: 'date', title: '新闻事件', sort:true}
+   		   ,{field: 'tag', title: '新闻标签', sort: true}
+		    ,{field: 'url', title: '新闻链接',sort:true}
+		    ,{field: 'content', title: '新闻内容', hide:true}
+   		 ]]		
+ 		 });
+  
+		});
+   		 });
+	});
+});
+</script>
+</head>
+<body>
+ <div class="layui-fluid">  
+  <div class="layui-row">
+    <div style="text-align: center;" class="layui-col-md1">
+	<i class="layui-icon layui-icon-face-smile" style="font-size: 30px; color: #1E9FFF;"></i>
+    </div>
+    <div class="layui-col-md9"><br /><br />
+    <h1 style="text-align: center;font-family: '微软雅黑';"><b>EasyNews 新闻检索</b></h1><br /><br /><br />
+    
+    	<input type="text" id="keyword" placeholder="请输入搜索内容" class="layui-input"> <br /><br />
+    	<br /><button style="display:block;margin:0 auto;height: 50px;width: 200px" id="newsSearch_btn" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-normal">查询</button><br />
+    <hr class="layui-bg-blue">
+    <table id="demo" lay-filter="test"></table>
+    </div>
+    <div class="layui-col-md1">
+    	<i class="layui-icon layui-icon-face-smile" style="font-size: 30px; color: #1E9FFF;"></i>
+    </div>
+  </div>
+</div>
+ 
+<script src="layui.js"></script>
+<script>
+
+</script>
+</body>
+</html>
