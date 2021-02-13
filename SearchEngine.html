@@ -52,8 +52,9 @@ $(document).ready(function(){
 			keyword:keyword
 		},
 		function(data,status){
-        		alert("搜索成功!");
-        		alert(data);
+        		// alert("搜索成功!");
+            alert("Search successfully!")
+        		// alert(data);
         		layui.use('table', function(){
   			var table = layui.table;
   
@@ -67,11 +68,16 @@ $(document).ready(function(){
 		url: 'php/result.txt', //结果数据接口
    		 page: true, //开启分页
    		 cols: [[ //表头
-   		   {field: 'title', title: '新闻标题', sort: true}
-   		   ,{field: 'date', title: '新闻事件', sort:true}
-   		   ,{field: 'tag', title: '新闻标签', sort: true}
-		    ,{field: 'url', title: '新闻链接',sort:true}
-		    ,{field: 'content', title: '新闻内容', hide:true}
+   		 //   {field: 'title', title: '新闻标题', sort: true}
+   		 //   ,{field: 'date', title: '新闻事件', sort:true}
+   		 //   ,{field: 'tag', title: '新闻标签', sort: true}
+		    // ,{field: 'url', title: '新闻链接',sort:true}
+		    // ,{field: 'content', title: '新闻内容', hide:true}
+         {field: 'title', title: 'Transaction', sort: true}
+         ,{field: 'date', title: 'Time', sort:true}
+         ,{field: 'tag', title: 'Artwork', sort: true}
+        ,{field: 'url', title: 'Seller',sort:true}
+        ,{field: 'content', title: 'Content', hide:true}
    		 ]]		
  		 });
   
